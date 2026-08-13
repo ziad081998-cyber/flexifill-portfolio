@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activate FlexiFill — AppSumo License Verification</title>
+  
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#090d16',
+            slatecard: 'rgba(30, 41, 59, 0.45)',
+            electric: '#3b82f6',
+            neon: '#10b981',
+            neonred: '#ef4444'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #090d16;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .glass-nav {
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: rgba(17, 24, 39, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .glow-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="text-slate-200 glow-grid relative min-h-screen flex flex-col justify-between selection:bg-electric selection:text-white">
+
+  <!-- Ambient Light Orbs -->
+  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-emerald-600/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="glass-nav fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="icon.png" class="w-8 h-8 object-contain rounded" alt="FlexiFill Logo" onerror="this.style.display='none'">
+        <span class="font-bold text-lg tracking-wider text-white font-mono">FLEXIFILL</span>
+      </div>
+      <div class="text-xs px-2 py-0.5 rounded border border-blue-500/30 text-blue-400 bg-blue-500/10 font-mono">
+        SECURE ACTIVATION
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow pt-24 pb-12 px-6 flex flex-col items-center justify-center">
+    
+    <!-- Activation Form Card -->
+    <div id="activation-card" class="glass-card w-full max-w-md rounded-xl p-8 border border-white/5 shadow-2xl relative overflow-hidden transition-all duration-300">
+      
+      <!-- Card header -->
+      <div class="text-center mb-8 relative z-10">
+        <h1 class="text-2xl font-extrabold text-white mb-2 tracking-tight">Activate FlexiFill License</h1>
+        <p class="text-xs text-slate-400">Enter your AppSumo key to unlock your direct download package.</p>
+      </div>
+
+      <!-- Verification Form State -->
+      <div id="form-container" class="space-y-6 relative z-10">
+        <div>
+          <label for="license-key" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2">License Key</label>
+          <input 
+            type="text" 
+            id="license-key" 
+            placeholder="FLEX-XXXX-XXXX-XXXX" 
+            class="w-full px-4 py-3 rounded-lg bg-slate-950/60 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm font-mono tracking-widest text-center transition-all"
+          >
+        </div>
+
+        <!-- Feedback Alert message (Hidden by default) -->
+        <div id="error-alert" class="hidden p-3 rounded-lg border border-red-500/20 bg-red-500/10 text-xs text-red-400 font-medium flex items-start gap-2 animate-fadeIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span id="error-message">الرمز المدخل غير صحيح، يرجى المحاولة مرة أخرى.</span>
+        </div>
+
+        <button 
+          id="btn-verify" 
+          class="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-sm font-semibold tracking-wider uppercase font-mono shadow-lg shadow-blue-600/10 hover:shadow-blue-600/20 transition-all flex items-center justify-center gap-2 group"
+        >
+          <span>Verify &amp; Download</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Loading / Processing State (Hidden by default) -->
+      <div id="loading-container" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center gap-4 text-center p-6">
+        <div class="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+        <div>
+          <h4 class="text-white text-sm font-semibold font-mono">Verifying License...</h4>
+          <p class="text-[10px] text-slate-500 mt-1">Connecting to API Gateway Server</p>
+        </div>
+      </div>
+
+      <!-- Activation Success Screen (Hidden by default) -->
+      <div id="success-container" class="hidden relative z-10 space-y-6 animate-fadeIn">
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto mb-4 shadow-lg shadow-emerald-500/5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1">Activation Successful!</h2>
+          <p class="text-xs text-slate-400">Your key is registered. You can now download the extension bundle.</p>
+        </div>
+
+        <a 
+          id="btn-download" 
+          href="#" 
+          target="_blank" 
+          class="w-full py-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-sm font-semibold tracking-wider uppercase font-mono shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 group text-center block"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Download Extension (ZIP)</span>
+        </a>
+
+        <!-- Installation Instructions -->
+        <div class="border-t border-white/5 pt-4">
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-3">Installation Steps</h4>
+          <ol class="text-[11px] text-slate-400 space-y-2 list-decimal list-inside font-medium leading-relaxed">
+            <li>Extract the downloaded <code class="text-emerald-400 font-mono">.zip</code> file to a folder.</li>
+            <li>In Chrome, navigate to: <code class="text-blue-400 font-mono">chrome://extensions/</code></li>
+            <li>Enable <strong class="text-white">Developer mode</strong> in the top right.</li>
+            <li>Click <strong class="text-white">Load unpacked</strong> and select the extracted folder.</li>
+          </ol>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-nav py-6 px-6 text-center text-slate-500 text-xs font-mono">
+    <p>&copy; 2026 FlexiFill Automation. Secure verification systems.</p>
+  </footer>
+
+  <script>
+    // Configuration - Replace with your Cloudflare Worker verification proxy URL
+    const CLOUDFLARE_WORKER_URL = 'https://flexifill-api-proxy.your-subdomain.workers.dev/verify';
+    
+    // Fallback release bundle if proxy successfully activates
+    const GITHUB_ZIP_RELEASE_URL = 'https://github.com/ziad081998-cyber/flexifill-portfolio/releases/download/v1.0.0/FlexFill-v1.0.0-PRO.zip';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnVerify = document.getElementById('btn-verify');
+      const licenseInput = document.getElementById('license-key');
+      const formContainer = document.getElementById('form-container');
+      const loadingContainer = document.getElementById('loading-container');
+      const successContainer = document.getElementById('success-container');
+      const errorAlert = document.getElementById('error-alert');
+      const errorMessage = document.getElementById('error-message');
+      const btnDownload = document.getElementById('btn-download');
+
+      btnVerify.addEventListener('click', async () => {
+        const key = licenseInput.value.trim();
+        
+        // Basic frontend format validation
+        if (!key) {
+          showError('الرجاء إدخال مفتاح الترخيص الخاص بك.');
+          return;
+        }
+
+        // Hide old error alerts
+        errorAlert.classList.add('hidden');
+        
+        // Show loading state
+        loadingContainer.classList.remove('hidden');
+
+        try {
+          // Send verification POST request to the API
+          const response = await fetch(CLOUDFLARE_WORKER_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ code: key })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            // Unlocked successfully
+            showSuccess(data.downloadUrl || GITHUB_ZIP_RELEASE_URL);
+          } else {
+            // API returned validation error (e.g. invalid key or used key)
+            showError(data.error || 'الكود غير صحيح، أو تم استخدامه مسبقاً.');
+          }
+        } catch (error) {
+          console.error('Verification error:', error);
+          // Fallback error messaging
+          showError('فشل الاتصال بخادم التحقق. يرجى التحقق من اتصال الإنترنت أو المحاولة لاحقاً.');
+        } finally {
+          // Hide loading state
+          loadingContainer.classList.add('hidden');
+        }
+      });
+
+      function showError(msg) {
+        errorMessage.textContent = msg;
+        errorAlert.classList.remove('hidden');
+      }
+
+      function showSuccess(downloadUrl) {
+        formContainer.classList.add('hidden');
+        successContainer.classList.remove('hidden');
+        btnDownload.href = downloadUrl;
+      }
+    });
+  </script>
+</body>
+</html>
