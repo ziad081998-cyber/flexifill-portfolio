@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation & AI Architect Portfolio</title>
+  
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#090d16',
+            slatecard: 'rgba(30, 41, 59, 0.4)',
+            electric: '#3b82f6',
+            neon: '#10b981',
+            neonpurple: '#a855f7'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #090d16;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Glassmorphism styles */
+    .glass-nav {
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: rgba(17, 24, 39, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .glass-card-glow-blue {
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+    }
+
+    .glass-card-glow-green {
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Accents & Gradients */
+    .gradient-text-blue-green {
+      background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text-purple-blue {
+      background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .neon-pulse-blue {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+    }
+
+    .neon-pulse-green {
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3b82f6;
+    }
+
+    /* Glow Grid Background */
+    .glow-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="text-slate-200 glow-grid relative min-h-screen selection:bg-electric selection:text-white">
+
+  <!-- Ambient Light Orbs -->
+  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none -z-10"></div>
+  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-emerald-600/10 blur-[130px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="glass-nav fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="icon.png" class="w-8 h-8 object-contain rounded" alt="FlexiFill Logo">
+        <span class="font-bold text-lg tracking-wider text-white font-mono">FLEXIFILL</span>
+        <span class="text-xs px-2 py-0.5 rounded border border-emerald-500/30 text-emerald-400 bg-emerald-500/10 font-mono">ENGINE v2.0</span>
+      </div>
+      
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#hero" class="hover:text-white transition-colors">Hero</a>
+        <a href="#visualizer" class="hover:text-white transition-colors">Visualizer</a>
+        <a href="#projects" class="hover:text-white transition-colors">FlexiFill Project</a>
+        <a href="#architecture" class="hover:text-white transition-colors">Specs</a>
+        <a href="#stack" class="hover:text-white transition-colors">Tech Stack</a>
+      </div>
+
+      <div>
+        <a href="#visualizer" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold tracking-wider uppercase font-mono shadow-lg shadow-blue-600/20 hover:shadow-blue-500/35 transition-all">Launch Visualizer</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-[85vh] flex flex-col justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 flex flex-col items-start">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-xs font-semibold tracking-widest uppercase font-mono mb-6">
+          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Systems &amp; RPA Architect
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          Scaling Human Productivity via <span class="gradient-text-blue-green">State-Aware</span> Intelligent Automation.
+        </h1>
+        
+        <p class="text-base sm:text-lg text-slate-400 mb-8 max-w-2xl">
+          I build high-reliability robotic process automation engines and smart AI interfaces. 
+          Author of <span class="text-emerald-400 font-semibold">FlexiFill</span>, a state-aware autofill framework designed to safely bypass React value trackers, Angular overlays, and multi-step DOM wizard lifecycles with 100% data persistence.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#visualizer" class="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-medium text-sm transition-all shadow-xl shadow-blue-900/30">
+            Interactive System Flow
+          </a>
+          <a href="#projects" class="px-6 py-3 rounded-lg border border-slate-700 hover:border-slate-500 bg-slate-900/20 text-slate-300 hover:text-white font-medium text-sm transition-all">
+            Read FlexiFill Specs
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-blue-500 to-emerald-500 opacity-20 blur-md -z-10"></div>
+        <div class="glass-card rounded-xl p-6 border border-white/5 font-mono text-xs text-emerald-400/90 shadow-2xl">
+          <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/70"></span>
+            </div>
+            <span class="text-slate-500 text-[10px]">stateAwareInjectionEngine.js</span>
+          </div>
+          <pre class="overflow-x-auto text-[11px] leading-relaxed text-slate-300">
+<span class="text-purple-400">function</span> <span class="text-blue-400">injectReactControlledValue</span>(element, value) {
+    <span class="text-slate-500">// Bypasses Virtual DOM cache locks</span>
+    <span class="text-purple-400">const</span> lastValue = element.value;
+    element.value = value;
+
+    <span class="text-slate-500">// Notify React 16+ state manager</span>
+    <span class="text-purple-400">const</span> tracker = element._valueTracker;
+    <span class="text-purple-400">if</span> (tracker) {
+        tracker.setValue(lastValue);
+    }
+
+    <span class="text-slate-500">// Dispatch synchronized event loops</span>
+    element.dispatchEvent(<span class="text-blue-300">new</span> <span class="text-emerald-400">Event</span>(<span class="text-yellow-300">'input'</span>, { bubbles: <span class="text-blue-300">true</span> }));
+    element.dispatchEvent(<span class="text-blue-300">new</span> <span class="text-emerald-400">Event</span>(<span class="text-yellow-300">'change'</span>, { bubbles: <span class="text-blue-300">true</span> }));
+    element.dispatchEvent(<span class="text-blue-300">new</span> <span class="text-emerald-400">Event</span>(<span class="text-yellow-300">'blur'</span>, { bubbles: <span class="text-blue-300">true</span> }));
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Visualizer Section -->
+  <section id="visualizer" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-white mb-4">
+        Interactive "How it Works" Visualizer
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        Watch semantic data packets travel through our pipeline. Discover how the engine normalizes inputs, queries complex DOM structures, and dispatches native events rather than doing simple copy-paste operations.
+      </p>
+    </div>
+
+    <!-- Visualizer Dashboard Card -->
+    <div class="glass-card rounded-xl border border-white/5 p-6 shadow-2xl relative overflow-hidden">
+      <!-- Background Ambient Grid Glow -->
+      <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none"></div>
+
+      <!-- Controls Dashboard -->
+      <div class="flex flex-wrap gap-4 items-center justify-between mb-6 pb-6 border-b border-white/5 relative z-10">
+        <div class="flex flex-wrap gap-2">
+          <button id="btn-spawn-name" class="px-4 py-2 rounded bg-blue-600/20 hover:bg-blue-600/35 border border-blue-500/40 text-blue-400 text-xs font-semibold tracking-wider font-mono uppercase transition-all hover:scale-[1.02]">
+            Simulate Name Input
+          </button>
+          <button id="btn-spawn-date" class="px-4 py-2 rounded bg-emerald-600/20 hover:bg-emerald-600/35 border border-emerald-500/40 text-emerald-400 text-xs font-semibold tracking-wider font-mono uppercase transition-all hover:scale-[1.02]">
+            Simulate Date Normalization
+          </button>
+          <button id="btn-spawn-combo" class="px-4 py-2 rounded bg-purple-600/20 hover:bg-purple-600/35 border border-purple-500/40 text-purple-400 text-xs font-semibold tracking-wider font-mono uppercase transition-all hover:scale-[1.02]">
+            Simulate React-Select
+          </button>
+        </div>
+        <div class="text-slate-400 text-xs font-mono">
+          Interactive Controls &bull; Click to Spawn Packets
+        </div>
+      </div>
+
+      <!-- Visualization Canvas Canvas Container -->
+      <div class="relative w-full h-[320px] md:h-[400px] bg-slate-950/80 rounded-lg border border-white/5 overflow-hidden">
+        <canvas id="visualizer-canvas" class="absolute inset-0 w-full h-full"></canvas>
+      </div>
+
+      <!-- Real-time Console Logger Terminal -->
+      <div class="mt-6 glass-card rounded-lg border border-white/5 p-4 font-mono text-xs text-slate-300">
+        <div class="flex items-center justify-between text-slate-500 border-b border-white/5 pb-2 mb-3">
+          <span>Engine Execution Terminal</span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            ACTIVE
+          </span>
+        </div>
+        <div id="terminal-logs" class="space-y-1.5 h-28 overflow-y-auto pr-2 scrollbar">
+          <div class="text-slate-500">&gt; FlexiFill engine initialized. Listening for data packet inputs...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section focusing on FlexiFill -->
+  <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold text-white mb-4">
+        Project Focus: FlexiFill Automation Engine
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        A deep architectural breakdown of our high-end, state-aware automation core.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+      <!-- Project Narrative and Stack -->
+      <div class="lg:col-span-7 flex flex-col justify-between">
+        <div class="glass-card rounded-xl p-8 border border-white/5 flex-grow">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="p-2 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20 font-mono text-sm font-bold">FF-01</span>
+            <h3 class="text-2xl font-bold text-white">MV3 State-Aware Injection Engine</h3>
+          </div>
+
+          <p class="text-slate-300 mb-6 leading-relaxed text-sm">
+            Conventional automation extensions inject values statically into inputs. This triggers immediate rejection on SPA frameworks (React/Angular/Vue) because virtual DOM registers are bypassed. 
+            FlexiFill addresses this challenge. It reads structural parameters, handles custom options dynamically, overrides raw setter descriptors, and dispatches native event hooks to persist state natively.
+          </p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xs mt-0.5 font-mono">1</div>
+              <div>
+                <h4 class="text-white font-semibold text-sm mb-1">React State Persistence</h4>
+                <p class="text-xs text-slate-400">Triggers prototype setters on standard fields while resetting internal `_valueTracker` state registers dynamically.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xs mt-0.5 font-mono">2</div>
+              <div>
+                <h4 class="text-white font-semibold text-sm mb-1">Custom Dropdown Engine</h4>
+                <p class="text-xs text-slate-400">Polls and interacts with complex overlays (mat-select, React-Select, Select2). Click dispatches are coupled with simulated Enter keystroke event loops to bind options.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xs mt-0.5 font-mono">3</div>
+              <div>
+                <h4 class="text-white font-semibold text-sm mb-1">Bounded Verification Guard</h4>
+                <p class="text-xs text-slate-400">Verifies injection success post-fill and checks elements explicitly filled during the active cycle, ignoring downstream fields of dynamic multi-step wizards.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded bg-slate-900 border border-white/5 text-slate-400 font-mono text-[10px] uppercase">Chrome Extensions MV3</span>
+            <span class="px-2.5 py-1 rounded bg-slate-900 border border-white/5 text-slate-400 font-mono text-[10px] uppercase">Virtual DOM Bypassing</span>
+            <span class="px-2.5 py-1 rounded bg-slate-900 border border-white/5 text-slate-400 font-mono text-[10px] uppercase">Semantic Mapping</span>
+            <span class="px-2.5 py-1 rounded bg-slate-900 border border-white/5 text-slate-400 font-mono text-[10px] uppercase">Native Event Loops</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo Video Visual Evidence Placeholder -->
+      <div class="lg:col-span-5">
+        <div class="glass-card rounded-xl p-4 border border-white/5 h-full flex flex-col justify-between">
+          <a href="https://www.youtube.com/watch?v=zkjJzipGJCk" target="_blank" class="relative w-full aspect-video bg-slate-950 rounded-lg border border-white/5 overflow-hidden shadow-inner group block cursor-pointer">
+            <!-- Simulated extension window interface inside overlay -->
+            <div class="absolute top-0 w-full px-3 py-1.5 bg-slate-900/90 border-b border-white/5 flex items-center justify-between text-[10px] text-slate-400 font-mono z-10 backdrop-blur-sm">
+              <span>FlexiFill Engine Live Demo</span>
+              <span class="text-emerald-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                WATCH VIDEO
+              </span>
+            </div>
+            
+            <!-- Beautiful Background with Shield Logo and glow -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-900 to-blue-950/20 flex items-center justify-center">
+              <img src="icon.png" class="w-20 h-20 object-contain opacity-25 group-hover:opacity-40 transition-opacity duration-300" alt="FlexiFill Logo Overlay">
+            </div>
+
+            <!-- Glowing Neon Play Button Overlay -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div class="w-14 h-14 rounded-full bg-blue-600/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-lg shadow-blue-500/5 group-hover:scale-110 group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div class="text-center">
+                <h4 class="text-white text-xs font-semibold tracking-wider font-mono uppercase">Click to Play Demo</h4>
+                <p class="text-[10px] text-slate-500 font-mono mt-0.5">Opens in a new tab on YouTube</p>
+              </div>
+            </div>
+          </a>
+
+          <div class="mt-4 pt-4 border-t border-white/5">
+            <h4 class="text-white text-xs font-semibold uppercase tracking-wider mb-2 font-mono">System Benchmarks</h4>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="p-2 bg-slate-900/50 rounded border border-white/5">
+                <div class="text-[10px] text-slate-500 font-mono">React-Select</div>
+                <div class="text-xs font-bold text-emerald-400">100% Sync</div>
+              </div>
+              <div class="p-2 bg-slate-900/50 rounded border border-white/5">
+                <div class="text-[10px] text-slate-500 font-mono">Execution Pacing</div>
+                <div class="text-xs font-bold text-blue-400">50ms</div>
+              </div>
+              <div class="p-2 bg-slate-900/50 rounded border border-white/5">
+                <div class="text-[10px] text-slate-500 font-mono">State Mismatch</div>
+                <div class="text-xs font-bold text-purple-400">0.0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architectural Specs (Standard vs State-Aware Engine) -->
+  <section id="architecture" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-white mb-4">
+        Intelligent State-Aware Injection Engine vs. Simple Copy-Paste
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        A feature comparison showing how FlexiFill's engine goes beyond simple clipboard injection to ensure framework state persistence.
+      </p>
+    </div>
+
+    <div class="glass-card rounded-xl border border-white/5 overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse font-mono text-xs">
+          <thead>
+            <tr class="bg-slate-950 border-b border-white/10 text-slate-300">
+              <th class="py-4 px-6 font-semibold uppercase">Feature / Capability</th>
+              <th class="py-4 px-6 font-semibold uppercase text-slate-500">Standard Copy-Paste (Basic Autofills)</th>
+              <th class="py-4 px-6 font-semibold uppercase text-emerald-400">FlexiFill State-Aware Engine</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-slate-300">
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 px-6 font-semibold text-white">React Controlled inputs</td>
+              <td class="py-4 px-6 text-slate-500">Values wiped out immediately upon clicking other form fields.</td>
+              <td class="py-4 px-6 text-emerald-400">Fires internal property descriptor setters and resets React's `_valueTracker`.</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 px-6 font-semibold text-white">Dynamic Combobox Arrays</td>
+              <td class="py-4 px-6 text-slate-500">Fails to open dropdown overlays or select multiple options.</td>
+              <td class="py-4 px-6 text-emerald-400">Simulates option clicks followed by Enter key event sequences and blur hooks.</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 px-6 font-semibold text-white">Verification Checking</td>
+              <td class="py-4 px-6 text-slate-500">No verification checks. Forms are submitted containing invalid data.</td>
+              <td class="py-4 px-6 text-emerald-400">Compares values post-injection, checking targeted fields to prevent conflicts.</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 px-6 font-semibold text-white">Date Format Normalization</td>
+              <td class="py-4 px-6 text-slate-500">Injects raw dates that violate masks, causing validation errors.</td>
+              <td class="py-4 px-6 text-emerald-400">Parses dates to match specific placeholders or formats, and strips mask residue.</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 px-6 font-semibold text-white">Preview Mode Safety Lock</td>
+              <td class="py-4 px-6 text-slate-500">Forms submit immediately, bypassing validation or user check routines.</td>
+              <td class="py-4 px-6 text-emerald-400">Blocks click/submit listeners and progress queues if Preview is active.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section id="stack" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold text-white mb-4">
+        Automation Architect Tech Stack
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        The core technologies, APIs, and frameworks I use to build robust system solutions.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <!-- Badge 1: Chrome Extension API -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-red-500/30 hover:shadow-lg hover:shadow-red-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">CR</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">Chrome API</h4>
+        <p class="text-[10px] text-slate-500 font-mono">MV3 / Backgrounds</p>
+      </div>
+
+      <!-- Badge 2: React / state tracking -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">RE</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">React Controlled</h4>
+        <p class="text-[10px] text-slate-500 font-mono">State Hooks Sync</p>
+      </div>
+
+      <!-- Badge 3: JavaScript ES6 -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-yellow-500/30 hover:shadow-lg hover:shadow-yellow-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">JS</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">JavaScript</h4>
+        <p class="text-[10px] text-slate-500 font-mono">ES6+ DOM Mutation</p>
+      </div>
+
+      <!-- Badge 4: Node.js / Automation -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">NO</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">Node.js</h4>
+        <p class="text-[10px] text-slate-500 font-mono">Package CLI Scripts</p>
+      </div>
+
+      <!-- Badge 5: Tailwind CSS -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">TW</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">Tailwind CSS</h4>
+        <p class="text-[10px] text-slate-500 font-mono">Utility Styling</p>
+      </div>
+
+      <!-- Badge 6: Gemini LLMs -->
+      <div class="glass-card rounded-lg p-6 border border-white/5 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5 transition-all text-center group">
+        <div class="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mx-auto mb-4 group-hover:scale-105 transition-all">
+          <span class="font-mono text-sm font-bold">AI</span>
+        </div>
+        <h4 class="text-white text-sm font-semibold mb-1">Gemini Cascade</h4>
+        <p class="text-[10px] text-slate-500 font-mono">LLM Context Mapping</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-nav py-8 px-6 text-center text-slate-500 text-xs font-mono">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-white font-mono">FLEXIFILL AUTOMATION</span>
+      </div>
+      <p>&copy; 2026 FlexiFill Automation. All rights reserved.</p>
+      <p>Design: Modern Minimalist Tech System</p>
+    </div>
+  </footer>
+
+  <!-- CANVAS VISUALIZER LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('visualizer-canvas');
+      const ctx = canvas.getContext('2d');
+      const terminalLogs = document.getElementById('terminal-logs');
+
+      // Adjust Canvas size for high-resolution displays
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+      });
+
+      // Terminal logger helper
+      function addTerminalLog(msg, type = 'info') {
+        const time = new Date().toLocaleTimeString();
+        const log = document.createElement('div');
+        if (type === 'success') {
+          log.className = 'text-emerald-400';
+        } else if (type === 'warning') {
+          log.className = 'text-yellow-400';
+        } else if (type === 'error') {
+          log.className = 'text-red-400';
+        } else if (type === 'special') {
+          log.className = 'text-purple-400';
+        } else {
+          log.className = 'text-slate-300';
+        }
+        log.innerHTML = `<span class="text-slate-500">[${time}]</span> ${msg}`;
+        terminalLogs.appendChild(log);
+        terminalLogs.scrollTop = terminalLogs.scrollHeight;
+      }
+
+      // System Nodes definitions (Circle, Rectangle, Diamond)
+      const nodes = [
+        {
+          id: 'input',
+          type: 'circle',
+          label: 'User Profile Data',
+          sub: 'Raw Biography/JSON',
+          x: 0.15,
+          y: 0.5,
+          radius: 40,
+          color: '#3b82f6',
+          hoverColor: '#60a5fa'
+        },
+        {
+          id: 'engine',
+          type: 'rect',
+          label: 'FlexiFill Engine',
+          sub: 'Contextual Reasoning',
+          x: 0.5,
+          y: 0.5,
+          w: 120,
+          h: 70,
+          color: '#a855f7',
+          hoverColor: '#c084fc'
+        },
+        {
+          id: 'output',
+          type: 'diamond',
+          label: 'Web Form Injection',
+          sub: 'React State / DOM Sync',
+          x: 0.85,
+          y: 0.5,
+          size: 45,
+          color: '#10b981',
+          hoverColor: '#34d399'
+        }
+      ];
+
+      // Particles flowing between nodes
+      let particles = [];
+      let rippleWave = null;
+      let activeEnginePulse = 0;
+
+      // Draw helper functions
+      function drawNodes() {
+        const w = canvas.width / window.devicePixelRatio;
+        const h = canvas.height / window.devicePixelRatio;
+
+        // Draw connections
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+        ctx.beginPath();
+        ctx.moveTo(w * nodes[0].x, h * nodes[0].y);
+        ctx.lineTo(w * nodes[1].x, h * nodes[1].y);
+        ctx.lineTo(w * nodes[2].x, h * nodes[2].y);
+        ctx.stroke();
+
+        // Draw flowing background pulses along paths
+        const pulseTime = Date.now() * 0.002;
+        ctx.lineWidth = 1.5;
+        
+        // Path 1 Pulse
+        let gradient1 = ctx.createLinearGradient(w * 0.15, h * 0.5, w * 0.5, h * 0.5);
+        gradient1.addColorStop(Math.abs(Math.sin(pulseTime)) * 0.8, 'rgba(59, 130, 246, 0)');
+        gradient1.addColorStop(Math.abs(Math.sin(pulseTime)) * 0.9, 'rgba(59, 130, 246, 0.45)');
+        gradient1.addColorStop(Math.min(Math.abs(Math.sin(pulseTime)) * 1.0, 1.0), 'rgba(59, 130, 246, 0)');
+        ctx.strokeStyle = gradient1;
+        ctx.beginPath();
+        ctx.moveTo(w * 0.15, h * 0.5);
+        ctx.lineTo(w * 0.5, h * 0.5);
+        ctx.stroke();
+
+        // Path 2 Pulse
+        let gradient2 = ctx.createLinearGradient(w * 0.5, h * 0.5, w * 0.85, h * 0.5);
+        gradient2.addColorStop(Math.abs(Math.cos(pulseTime)) * 0.8, 'rgba(16, 185, 129, 0)');
+        gradient2.addColorStop(Math.abs(Math.cos(pulseTime)) * 0.9, 'rgba(16, 185, 129, 0.45)');
+        gradient2.addColorStop(Math.min(Math.abs(Math.cos(pulseTime)) * 1.0, 1.0), 'rgba(16, 185, 129, 0)');
+        ctx.strokeStyle = gradient2;
+        ctx.beginPath();
+        ctx.moveTo(w * 0.5, h * 0.5);
+        ctx.lineTo(w * 0.85, h * 0.5);
+        ctx.stroke();
+
+        // Draw each Node geometry
+        nodes.forEach(node => {
+          const nx = w * node.x;
+          const ny = h * node.y;
+
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = node.color + '44';
+
+          if (node.id === 'engine' && activeEnginePulse > 0) {
+            ctx.shadowBlur = 15 + activeEnginePulse * 15;
+            ctx.shadowColor = '#a855f7bb';
+          }
+
+          if (node.type === 'circle') {
+            ctx.fillStyle = 'rgba(9, 13, 22, 0.9)';
+            ctx.beginPath();
+            ctx.arc(nx, ny, node.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = node.color;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+          } 
+          else if (node.type === 'rect') {
+            const rx = nx - node.w / 2;
+            const ry = ny - node.h / 2;
+            ctx.fillStyle = 'rgba(9, 13, 22, 0.9)';
+            ctx.beginPath();
+            ctx.roundRect(rx, ry, node.w, node.h, 10);
+            ctx.fill();
+            ctx.strokeStyle = node.color;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+          } 
+          else if (node.type === 'diamond') {
+            ctx.fillStyle = 'rgba(9, 13, 22, 0.9)';
+            ctx.beginPath();
+            ctx.moveTo(nx, ny - node.size);
+            ctx.lineTo(nx + node.size, ny);
+            ctx.lineTo(nx, ny + node.size);
+            ctx.lineTo(nx - node.size, ny);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = node.color;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+          }
+
+          // Reset shadows
+          ctx.shadowBlur = 0;
+
+          // Render Labels
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 12px Inter';
+          ctx.textAlign = 'center';
+          ctx.fillText(node.label, nx, ny - 2);
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+          ctx.font = '500 9px "JetBrains Mono"';
+          ctx.fillText(node.sub, nx, ny + 12);
+        });
+      }
+
+      function drawRipple() {
+        if (!rippleWave) return;
+        const w = canvas.width / window.devicePixelRatio;
+        const h = canvas.height / window.devicePixelRatio;
+        const rx = w * nodes[2].x;
+        const ry = h * nodes[2].y;
+
+        ctx.strokeStyle = `rgba(16, 185, 129, ${1 - rippleWave.progress})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(rx, ry, rippleWave.radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        rippleWave.radius += 2.5;
+        rippleWave.progress = rippleWave.radius / 120;
+        if (rippleWave.progress >= 1) {
+          rippleWave = null;
+        }
+      }
+
+      function updateParticles() {
+        const w = canvas.width / window.devicePixelRatio;
+        const h = canvas.height / window.devicePixelRatio;
+
+        particles = particles.filter(p => {
+          let targetX = w * nodes[p.targetIndex].x;
+          let targetY = h * nodes[p.targetIndex].y;
+          
+          let dx = targetX - p.x;
+          let dy = targetY - p.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 8) {
+            if (p.targetIndex === 1) {
+              // Reached FlexiFill Engine (The Brain)
+              p.targetIndex = 2;
+              p.color = '#a855f7';
+              activeEnginePulse = 1.0;
+              addTerminalLog(`Packet "${p.label}" entered AI Cascade. Analyzing label semantic context...`, 'special');
+              return true;
+            } else {
+              // Reached Web Form Injection (Diamond)
+              rippleWave = { radius: 10, progress: 0 };
+              
+              if (p.type === 'name') {
+                addTerminalLog(`[DOM Sync] Element targeted: "${p.label}". Injecting: "${p.value}".`, 'success');
+                addTerminalLog(`[React State] Dispatched React 16+ virtual DOM _valueTracker setter bypass. change/blur events dispatched successfully.`, 'success');
+              } else if (p.type === 'date') {
+                addTerminalLog(`[formatDateForInput] Extracted date normalized to "${p.value}" aligning with element DD-MM-YYYY mask constraints.`, 'emerald');
+                addTerminalLog(`[DOM Sync] Element value set successfully. Trailing placeholders cleared.`, 'success');
+              } else if (p.type === 'combo') {
+                addTerminalLog(`[Dropdown Engine] Dropdown option "${p.value}" resolved. Option clicked.`, 'success');
+                addTerminalLog(`[Keyboard Hooks] Dispatched focus loss & simulating Enter key event sequence (which: 13) to seal React-Select option chip.`, 'success');
+              }
+              return false; // Destroy particle
+            }
+          }
+
+          // Move particle
+          p.x += (dx / dist) * p.speed;
+          p.y += (dy / dist) * p.speed;
+          return true;
+        });
+
+        if (activeEnginePulse > 0) {
+          activeEnginePulse -= 0.05;
+        }
+      }
+
+      function drawParticles() {
+        particles.forEach(p => {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+
+          // Draw small glowing dot
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.shadowBlur = 0;
+
+          // Draw packet text label
+          ctx.fillStyle = p.color;
+          ctx.font = '500 9px "JetBrains Mono"';
+          ctx.textAlign = 'center';
+          ctx.fillText(p.label, p.x, p.y - 10);
+        });
+      }
+
+      // Loop animation
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        drawNodes();
+        drawRipple();
+        updateParticles();
+        drawParticles();
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      // Spawning functions
+      function spawnPacket(type, label, value) {
+        const w = canvas.width / window.devicePixelRatio;
+        const h = canvas.height / window.devicePixelRatio;
+
+        particles.push({
+          x: w * nodes[0].x,
+          y: w * nodes[0].y,
+          targetIndex: 1,
+          speed: 3.5,
+          color: '#3b82f6',
+          label: label,
+          value: value,
+          type: type
+        });
+        addTerminalLog(`Spawned raw profile data packet: "${label}: ${value}". Dispatching to FlexiFill Engine...`);
+      }
+
+      // Hook up UI buttons
+      document.getElementById('btn-spawn-name').addEventListener('click', () => {
+        spawnPacket('name', 'full_name', 'Mounir Benzekri');
+      });
+
+      document.getElementById('btn-spawn-date').addEventListener('click', () => {
+        spawnPacket('date', 'birth_date', '12 Aug 2026');
+      });
+
+      document.getElementById('btn-spawn-combo').addEventListener('click', () => {
+        spawnPacket('combo', 'subjects', 'Computer Science');
+      });
+    });
+  </script>
+</body>
+</html>
